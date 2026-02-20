@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bellman-Ford Visualizer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <div class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold text-center mb-6">Bellman-Ford Algorithm Visualizer</h1>
+
+    <div class="bg-white p-4 rounded-lg shadow-md mb-6 flex flex-col md:flex-row items-center justify-center gap-4">
+      <button onclick="generateRandomGraph()" class="btn bg-blue-500">Generate New Graph</button>
+      <div class="flex items-center gap-2">
+        <input id="sourceNode" class="input w-48" placeholder="Source Node (e.g. A)" />
+        <button id="runBtn" onclick="runBellmanFord()" class="btn bg-green-500">Run Bellman-Ford</button>
+      </div>
+      <button onclick="resetGraph()" class="btn bg-red-500">Reset</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2">
+        <h2 id="iterationCounter" class="text-xl font-semibold mb-2 text-center">Iteration: 0 / 0</h2>
+        <div class="bg-white p-2 rounded-lg shadow-md">
+            <canvas id="graphCanvas" width="700" height="450"></canvas>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Graph Edges</h2>
+        <div id="edgeList" class="bg-white p-4 shadow rounded-lg h-full max-h-[490px] overflow-y-auto"></div>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Distance Table</h2>
+        <div class="overflow-x-auto bg-white shadow rounded-lg">
+          <table class="table-auto w-full" id="distanceTable">
+            <thead><tr class="bg-gray-200 text-left">
+              <th class="p-2">Node</th>
+              <th class="p-2">Distance (D[v])</th>
+              <th class="p-2">Predecessor (π[v])</th>
+            </tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h2 class="text-xl font-semibold mb-2">Execution Log</h2>
+        <pre id="logBox" class="bg-gray-800 text-white p-4 shadow rounded-lg h-64 overflow-y-auto text-sm"></pre>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultModal" class="modal-container">
+    <div class="modal-content">
+      <h2 id="modalTitle" class="text-2xl font-bold mb-4">Algorithm Complete!</h2>
+      <div id="modalTableContainer">
+        </div>
+      <button id="closeModalBtn" class="btn bg-blue-500 mt-6">Close</button>
+    </div>
+  </div>
+
+  <script src="java.js"></script>
+</body>
+</html>
